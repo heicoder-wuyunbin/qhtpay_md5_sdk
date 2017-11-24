@@ -1,0 +1,17 @@
+{
+  "name":"qhtpay/qhtpay_sdk",
+  "description":"钱汇通聚合支付平台SDK",
+  "license":"MIT",
+  "type":"library",
+  "autoload":{
+    "psr-4":{
+      "qhtpay\\lib\\":"qhtpay/lib/",
+      "qhtpay\\constants\\":"qhtpay/constants/",
+      "qhtpay\\service\\":"qhtpay/service/",
+      "qhtpay\\util\\":"qhtpay/util/"
+    }
+  },
+  "require":{
+    "php": "^5.6|^7.0"
+  }
+}
