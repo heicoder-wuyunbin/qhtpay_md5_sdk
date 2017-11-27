@@ -14,7 +14,8 @@ class SignHelper{
         return md5($str);
     }
 
-    public static function verify_md5_sign($params=array(),$key=''){
+    public static function verify_md5_sign($params='',$key=''){
+        $params=json_decode($params,true);
         ksort($params);
 
         $merchant_sign=$params['sign'];
