@@ -41,7 +41,21 @@ T|必填
 F|非必填
 C|有条件必填
 
-
+### 1.6 支付方式对照表
+支付方式代号|支付方式名称
+---|---
+100|支付宝扫码
+101|支付宝条码
+200|微信扫码
+201|微信条码
+202|微信公众号内支付(mp)
+301|储蓄卡T1快捷支付
+302|储蓄卡D0快捷支付
+303|信用卡T1快捷支付
+304|信用卡D0快捷支付
+400|B2B网银支付
+401|B2C网银支付
+500|代付
 
 
 ## 2.扫码支付
@@ -82,7 +96,7 @@ IP地址|order_ip|String|15|T
 钱汇通商户号|merchant_no|String|29|T||入件成功后由平台分配
 设备号|device_id|String|32|T||终端设备号（商家自定义）
 商品描述|order_desc|String|128|T||订单描述
-支付方式|payment|String|3|T||100-支付宝 200-微信 300-银联
+支付方式|payment|String|3|T||
 支付金额|amount|int|7|T||单位为分
 商户平台订单号|out_order_number|String|50|T
 签名方式|sign_type|String|3|T|MD5|MD5签名=MD5 rsa签名=RSA
@@ -103,8 +117,7 @@ IP地址|order_ip|String|15|T
 签名方式|sign_type|String|3|T|MD5|MD5签名=MD5 rsa签名=RSA
 签名|sign|String|500|T|
 钱汇通商户号|merchant_no|String|29|T||入件成功后由平台分配
-支付方式|payment|String|3|T||100-支付宝 200-微信 300-银联
-支付金额|amount|int|7|T||单位为分
+支付方式|payment|String|3|T||
 商户平台订单号|out_order_number|String|50|T
 钱汇通平台订单号|order_number|String|50|T
 结算方式|settlement|String|2|T|T0|根据实际情况填写T0/T1
@@ -131,7 +144,7 @@ IP地址|order_ip|String|15|T
 签名方式|sign_type|String|3|T|MD5|MD5签名=MD5 rsa签名=RSA
 签名|sign|String|500|T|
 钱汇通商户号|merchant_no|String|29|T||入件成功后由平台分配
-支付方式|payment|String|3|T||100-支付宝 200-微信 300-银联
+支付方式|payment|String|3|T||
 支付金额|amount|int|7|T||单位为分
 商户平台订单号|out_order_number|String|50|T
 钱汇通平台订单号|order_number|String|50|T
