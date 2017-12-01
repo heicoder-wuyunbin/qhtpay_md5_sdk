@@ -10,7 +10,7 @@ class ApiConstants{
     const IMPORT_URL=self::BASE_URL.self::VERSION."/merchant/import";//商户入驻
     const IMPORT_QUERY_URL=self::BASE_URL.self::VERSION."/merchant/import_query";//商户入驻查询
 
-    const SCAN_CODE_URL = self::BASE_URL.self::VERSION."/scanCodePay";//扫码支付
+    const SCAN_CODE_URL = self::BASE_URL.self::VERSION."/scan_code_pay";//扫码支付
     const BAR_CODE_URL = self::BASE_URL.self::VERSION."/bar_code_pay";//条码支付
     const QUICK_PAY_URL = self::BASE_URL.self::VERSION."/quickPay";//快捷支付
     const CONVENIENT_PAY_URL=self::BASE_URL.self::VERSION."/convenience_pay";//便民支付

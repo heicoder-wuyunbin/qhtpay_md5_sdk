@@ -6,9 +6,9 @@ class SignHelper{
     public static function md5_sign($params=array(),$key=''){
         ksort($params);
         if($key==''){
-            $str=self::getSignContent($params).'&sign_key='.ApiConstants::PUBLIC_KEY;
+            $str=self::getSignContent($params).'&key='.ApiConstants::PUBLIC_KEY;
         }else{
-            $str=self::getSignContent($params)."&sign_key=$key";
+            $str=self::getSignContent($params)."&key=$key";
         }
 
         return md5($str);

@@ -17,10 +17,10 @@
 ###### 报文采用标准的==JSON==格式，采用UTF-8编码
 
 ### 1.4 数据的签名
-###### 同时支持MD5和RSA签名。接入方可根据自己的实际情况进行选择。
+###### 同时支持MD5和RSA签名,默认使用MD5。接入方可根据自己的实际情况进行选择。
 
 #### 1.4.1 MD5 签名方法
-###### 将需要上送的所有字段进行字典序排序，转成JSON字符创。对JSON字符串拼接签名密钥得到待签名字符创。对待签名字符串进行md5得到sign值。==测试环境中的签名密钥为：qhtpay@qhtpay==
+###### 将需要上送的所有字段进行字典序排序，连接称KV字符串。对字符串拼接签名密钥得到待签名字符串。对待签名字符串进行md5得到sign值。==签名密钥在进件时返回,进件密钥为 qhtpay@qhtpay==
 
 #### 1.4.2 demo
 ###### 假设要上送的字段如下：
@@ -30,9 +30,9 @@ aaa|123
 ccc|234
 bbb|345
 
-则JSON字符串为：{"aaa":"123","bbb":"345","ccc":"234"}，待签名字符串为：{"aaa":"123","bbb":"345","ccc":"234"}&sign_key=qhtpay@qhtpay 做md5 加密之后结果是：585246fb6024edc695871e7c2495784d，此即为sign值
+则KV字符串为：aaa=123&bbb=345&ccc=234，待签名字符串为：aaa=123&bbb=345&ccc=234&key=qhtpay@qhtpay 做md5 加密之后结果是：a77c02019fb0f0ea2cdacfcea06a67ee，此即为sign值
 最终发送的结果是：
-{"aaa":"123","bbb":"345","ccc":"234","sign":"585246fb6024edc695871e7c2495784d"}
+{"aaa":"123","bbb":"345","ccc":"234","sign":"894c22aabe3c333aca96d1e98076ca64"}
 ### 1.5 声明
 #### 1.5.1 是否必填标记
 标记符号|释义
@@ -45,18 +45,19 @@ C|有条件必填
 
 
 ## 2.扫码支付
-### 2.1 测试环境地址：/scanCodePay
+### 2.1 测试环境地址：http://192.168.124.15:8080/scanCodePay
 ### 2.2 正式环境地址：
 中文名称|属性名称|类型|长度|是否必填|默认值|备注
 ---|---|---|---|---|---|---
 版本号|version|String|10|F|1.0|默认版本1.0
+请求id|request_id|String|50|T|||保持全局唯一即可
 钱汇通商户号|merchant_no|String|29|T||入件成功后由平台分配
 支付方式|payment|String|3|T||100-支付宝 200-微信 300-银联
-支付金额|amount|int|7|T||单位为分
+支付金额|total_fee|int|7|T||单位为分
 商户平台订单号|out_order_number|String|50|T
-签名方式|sign_type|String|3|T|MD5|MD5签名=MD5 rsa签名=RSA
+签名方式|sign_type|String|3|F|MD5|MD5签名=MD5 rsa签名=RSA
 IP地址|order_ip|String|15|T
-结算方式|settlement|String|2|T|T0|根据实际情况填写T0/T1
+结算方式|settlement|String|2|T|T1|根据实际情况填写T0/T1
 订单标题|order_title|String|10|F
 订单详情|order_desc|String|50|T
 请求发起时间|request_at|String|14|T||如：2017年7月20日11:31:59 则表示为：20170720113159
@@ -69,18 +70,11 @@ IP地址|order_ip|String|15|T
 ---|---|---|---|---|---|---
 状态码|status|String|4|T||
 信息|msg|String|20|T
-签名方式|sign_type|String|3|T|MD5|MD5签名=MD5 rsa签名=RSA
-签名|sign|String|500|T|
-钱汇通商户号|merchant_no|String|29|T||入件成功后由平台分配
-支付方式|payment|String|3|T||100-支付宝 200-微信 300-银联
-支付金额|amount|int|7|T||单位为分
-商户平台订单号|out_order_number|String|50|T
-钱汇通平台订单号|order_number|String|50|T
-结算方式|settlement|String|2|T|T0|根据实际情况填写T0/T1
-支付二维码|qr_code|String|255|T||微信原生的URL，将其生成二维码扫描。
+支付二维码|code_url|String|255|T||原生的URL，将其生成二维码扫描。
+支付二维码图片|code_img_url|String|255|T||
 
 ## 3.条码支付？
-### 3.1 测试环境地址：/barCodePay
+### 3.1 测试环境地址：192.168.124.15:8080/barCodePay
 ### 3.2 正式环境地址：
 中文名称|属性名称|类型|长度|是否必填|默认值|备注
 ---|---|---|---|---|---|---
@@ -116,15 +110,16 @@ IP地址|order_ip|String|15|T
 结算方式|settlement|String|2|T|T0|根据实际情况填写T0/T1
 
 ## 4.订单查询
-### 4.1 测试环境地址：/orderQuery
+### 4.1 测试环境地址：
 ### 4.2 正式环境地址：
 中文名称|属性名称|类型|长度|是否必填|默认值|备注
 ---|---|---|---|---|---|---
 版本号|version|String|10|F|1.0|默认版本1.0
+请求id|request_id|String|50|T|||保持全局唯一即可
 钱汇通商户号|merchant_no|String|29|T||入件成功后由平台分配
 商户平台订单号|out_order_number|String|50|T
 签名方式|sign_type|String|3|T|MD5|MD5签名=MD5 rsa签名=RSA
-请求发起时间|request_at|String|14|T||如：2017年7月20日11:31:59 则表示为：20170720113159
+请求发起时间|request_at|String|14|F||如：2017年7月20日11:31:59 则表示为：20170720113159
 签名|sign|String|500|T|
 
 #### 接口返回
@@ -144,7 +139,7 @@ IP地址|order_ip|String|15|T
 支付结果|order_status|String|10|T||Success-订单支付成功 Fail-订单支付失败 Unknow-支付结果未知
 
 ## 5. 快捷支付接口
-### 5.1 测试环境:/quickPay
+### 5.1 测试环境
 ### 5.2 正式环境
 中文名称|属性名称|类型|长度|是否必填|默认值|备注
 ---|---|---|---|---|---|---
@@ -154,6 +149,8 @@ IP地址|order_ip|String|15|T
 商户平台订单号|out_order_number|String|50|T
 姓名|payer_name|String|20|T
 银行卡号|payer_account|String|40|T
+银行卡类型|card_type|String|5|T|debit|debit=储蓄卡 credit=信用卡
+结算方式|settle|String|2|T|T1|T1 D0
 手机号|payer_phone|String|15|T
 身份证号码|payer_id_card|String|18|T
 签名方式|sign_type|String|3|T|MD5|MD5签名=MD5 rsa签名=RSA
@@ -171,7 +168,7 @@ IP地址|order_ip|String|15|T
 支付页面内容|content|String|1000|T||html页面内容
 
 ### 6.个人进件接口
-### 6.1 测试环境:/merchant/import
+### 6.1 测试环境
 ### 6.2 正式环境
 中文名称|属性名称|类型|长度|是否必填|默认值|备注
 ---|---|---|---|---|---|---
@@ -214,7 +211,7 @@ IP地址|order_ip|String|15|T
 签名|sign|String|500|T|
 
 ### 7.个人进件查询接口
-### 7.1 测试环境:/merchant/import_query
+### 7.1 测试环境
 ### 7.2 正式环境
 中文名称|属性名称|类型|长度|是否必填|默认值|备注
 ---|---|---|---|---|---|---
