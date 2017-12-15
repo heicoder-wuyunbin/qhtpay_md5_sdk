@@ -11,7 +11,7 @@
 ######  接入钱汇通聚合支付平台的技术人员
 
 ### 1.2 通讯方式
-###### 采用==https==协议进行==POST==通讯
+###### 采用==https==协议进行==POST==通讯，需要添加IP白名单
 
 ### 1.3 报文格式和编码
 ###### 报文采用标准的==JSON==格式，采用UTF-8编码
@@ -139,7 +139,7 @@ C|有条件必填
 版本号|version|String|10|F|1.0|默认版本1.0
 请求id|request_id|String|50|T|||保持全局唯一即可
 钱汇通商户号|merchant_no|String|29|T||入件成功后由平台分配
-支付方式|payment|String|3|T||100-支付宝 200-微信 300-银联
+支付方式|payment|String|3|T||
 支付金额|total_fee|int|7|T||单位为分
 商户平台订单号|out_order_number|String|50|T
 签名方式|sign_type|String|3|F|MD5|MD5签名=MD5 rsa签名=RSA
@@ -169,7 +169,7 @@ IP地址|order_ip|String|15|T
 设备号|device_id|String|32|T||终端设备号（商家自定义）
 商品描述|order_desc|String|128|T||订单描述
 支付方式|payment|String|3|T||
-支付金额|amount|int|7|T||单位为分
+支付金额|total_fee|int|7|T||单位为分
 商户平台订单号|out_order_number|String|50|T
 签名方式|sign_type|String|3|T|MD5|MD5签名=MD5 rsa签名=RSA
 IP地址|order_ip|String|15|T
@@ -215,7 +215,7 @@ IP地址|order_ip|String|15|T
 签名|sign|String|500|T|
 钱汇通商户号|merchant_no|String|29|T||入件成功后由平台分配
 支付方式|payment|String|3|T||
-支付金额|amount|int|7|T||单位为分
+支付金额|total_fee|int|7|T||单位为分
 商户平台订单号|out_order_number|String|50|T
 钱汇通平台订单号|order_number|String|50|T
 结算方式|settlement|String|2|T|T0|根据实际情况填写T0/T1
@@ -227,7 +227,7 @@ IP地址|order_ip|String|15|T
 ---|---|---|---|---|---|---
 版本号|version|String|10|F|1.0|默认版本1.0
 钱汇通商户号|merchant_no|String|29|T||入件成功后由平台分配
-支付金额|amount|int|7|T||单位为分
+支付金额|total_fee|int|7|T||单位为分
 商户平台订单号|out_order_number|String|50|T
 姓名|payer_name|String|20|T
 银行卡号|payer_account|String|40|T
@@ -269,6 +269,7 @@ IP地址|order_ip|String|15|T
 300006|IdCardIsNull|身份证号码为空
 300007|IdCardError|身份证号码错误
 300008|BankCodeIsNull|银行联行号为空
+300009|MerchantNotExist|商户不存在
 400001|OrderNoIsNull|订单号不能为空
 400002|OrderNOIsExist|订单号已经存在
 400003|BeyondMaxQuota|单笔订单超过额度

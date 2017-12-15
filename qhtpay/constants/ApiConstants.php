@@ -4,7 +4,7 @@ class ApiConstants{
     const MERCHANT_NO = "350427201709121441548139537";//商户在钱汇通的商户号
     const KEY = "S91aCCc7eFIH";//密钥
     const PUBLIC_KEY="qhtpay@qhtpay";//公共MD5密钥
-    const BASE_URL="http://api.qhtpay.com/api/";
+    const BASE_URL="http://api.qhtpay.com.cn:18084/api/";
     const VERSION='v1.0';
 
     const IMPORT_URL=self::BASE_URL.self::VERSION."/merchant/import";//商户入驻
