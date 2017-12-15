@@ -233,6 +233,7 @@ IP地址|order_ip|String|15|T
 银行卡号|payer_account|String|40|T
 银行卡类型|card_type|String|5|T|debit|debit=储蓄卡 credit=信用卡
 结算方式|settle|String|2|T|T1|T1 D0
+支付方式|payment|String|3|T|
 手机号|payer_phone|String|15|T
 身份证号码|payer_id_card|String|18|T
 签名方式|sign_type|String|3|T|MD5|MD5签名=MD5 rsa签名=RSA
