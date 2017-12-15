@@ -75,6 +75,7 @@ C|有条件必填
 ### 2.个人进件接口
 中文名称|属性名称|类型|长度|是否必填|默认值|备注
 ---|---|---|---|---|---|---
+请求id|request_id|String|50|T||全局唯一
 版本号|version|String|10|F|1.0|默认版本1.0
 手机号|cellphone|String|15|T
 身份证号码|id_card|String|18|T
@@ -116,6 +117,7 @@ C|有条件必填
 ### 3.个人进件查询接口
 中文名称|属性名称|类型|长度|是否必填|默认值|备注
 ---|---|---|---|---|---|---
+请求id|request_id|String|50|T||全局唯一
 版本号|version|String|10|F|1.0|默认版本1.0
 手机号|cellphone|String|15|T
 身份证号码|id_card|String|18|T
@@ -136,6 +138,7 @@ C|有条件必填
 
 中文名称|属性名称|类型|长度|是否必填|默认值|备注
 ---|---|---|---|---|---|---
+请求id|request_id|String|50|T||全局唯一
 版本号|version|String|10|F|1.0|默认版本1.0
 请求id|request_id|String|50|T|||保持全局唯一即可
 钱汇通商户号|merchant_no|String|29|T||入件成功后由平台分配
@@ -164,6 +167,7 @@ IP地址|order_ip|String|15|T
 
 中文名称|属性名称|类型|长度|是否必填|默认值|备注
 ---|---|---|---|---|---|---
+请求id|request_id|String|50|T||全局唯一
 版本号|version|String|10|F|1.0|默认版本1.0
 钱汇通商户号|merchant_no|String|29|T||入件成功后由平台分配
 设备号|device_id|String|32|T||终端设备号（商家自定义）
@@ -197,6 +201,7 @@ IP地址|order_ip|String|15|T
 ## 6.订单查询
 中文名称|属性名称|类型|长度|是否必填|默认值|备注
 ---|---|---|---|---|---|---
+请求id|request_id|String|50|T||全局唯一
 版本号|version|String|10|F|1.0|默认版本1.0
 请求id|request_id|String|50|T|||保持全局唯一即可
 钱汇通商户号|merchant_no|String|29|T||入件成功后由平台分配
@@ -225,6 +230,7 @@ IP地址|order_ip|String|15|T
 
 中文名称|属性名称|类型|长度|是否必填|默认值|备注
 ---|---|---|---|---|---|---
+请求id|request_id|String|50|T||全局唯一
 版本号|version|String|10|F|1.0|默认版本1.0
 钱汇通商户号|merchant_no|String|29|T||入件成功后由平台分配
 支付金额|total_fee|int|7|T||单位为分
